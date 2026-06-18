@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-06-18T03:36:39.618Z",
+    "lastChecked": "2026-06-18T15:44:03.336Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-02-25T20:58:11.000Z",
@@ -386,7 +386,7 @@
       "https://www.anthropic.com/news/tcs-anthropic-partnership": "2026-06-16T14:35:47.000Z",
       "https://www.anthropic.com/news/anthropic-public-record": "2026-06-12T16:24:44.000Z",
       "https://www.anthropic.com/research/claude-code-expertise": "2026-06-17T15:38:18.000Z",
-      "https://www.anthropic.com/news/seoul-office-partnerships-korean-ai-ecosystem": "2026-06-18T03:06:46.000Z",
+      "https://www.anthropic.com/news/seoul-office-partnerships-korean-ai-ecosystem": "2026-06-18T03:57:50.000Z",
       "https://www.anthropic.com/research/team/frontier-red-team": "2026-06-17T17:03:48.000Z",
       "https://www.anthropic.com/research/mythos-preview": "2026-06-17T16:59:28.000Z",
       "https://www.anthropic.com/research/nuclear-safeguards-for-ai": "2026-06-17T16:54:35.000Z",
@@ -406,7 +406,7 @@
     }
   },
   "openai": {
-    "lastChecked": "2026-06-18T03:35:51.581Z",
+    "lastChecked": "2026-06-18T15:44:01.249Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-05-29T00:25:33.242Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-06-12T04:05:36.713Z",
@@ -932,7 +932,7 @@
       "https://openai.com/index/chatgpt-agent-system-card/": "2026-06-09T12:12:34.877Z",
       "https://openai.com/index/gpt-oss-model-card/": "2026-06-11T10:51:48.335Z",
       "https://openai.com/index/estimating-worst-case-frontier-risks-of-open-weight-llms/": "2026-06-14T23:52:01.361Z",
-      "https://openai.com/index/gpt-5-safe-completions/": "2026-06-18T01:15:33.338Z",
+      "https://openai.com/index/gpt-5-safe-completions/": "2026-06-18T10:58:12.998Z",
       "https://openai.com/index/openai-anthropic-safety-evaluation/": "2026-05-22T19:11:00.777Z",
       "https://openai.com/index/introducing-parental-controls/": "2026-06-13T13:07:43.687Z",
       "https://openai.com/index/gpt-5-system-card-addendum-gpt-5-1/": "2026-06-12T04:53:08.238Z",
@@ -1110,16 +1110,16 @@
       "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense/": "2026-06-04T13:41:59.710Z",
       "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership/": "2026-06-05T06:40:18.609Z",
       "https://openai.com/index/codex-for-every-role-tool-workflow/": "2026-06-17T20:27:35.935Z",
-      "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/": "2026-06-18T01:30:43.780Z",
+      "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind/": "2026-06-18T14:22:45.593Z",
       "https://openai.com/index/chatgpt-memory-dreaming/": "2026-06-16T23:10:43.853Z",
-      "https://openai.com/index/built-to-benefit-everyone-our-plan/": "2026-06-16T12:53:01.873Z",
+      "https://openai.com/index/built-to-benefit-everyone-our-plan/": "2026-06-18T04:03:56.965Z",
       "https://openai.com/index/openai-submits-confidential-s-1/": "2026-06-17T22:17:03.568Z",
       "https://openai.com/index/economic-research-exchange/": "2026-06-16T18:34:34.824Z",
-      "https://openai.com/index/openai-on-oracle-cloud/": "2026-06-18T03:04:30.804Z",
-      "https://openai.com/index/openai-to-acquire-ona/": "2026-06-17T23:44:02.631Z",
-      "https://openai.com/index/introducing-openai-partner-network/": "2026-06-17T17:50:29.747Z",
-      "https://openai.com/index/deployment-simulation/": "2026-06-17T20:40:07.105Z",
-      "https://openai.com/index/introducing-life-sci-bench/": "2026-06-18T01:30:52.449Z"
+      "https://openai.com/index/openai-on-oracle-cloud/": "2026-06-18T07:46:00.015Z",
+      "https://openai.com/index/openai-to-acquire-ona/": "2026-06-18T13:27:54.913Z",
+      "https://openai.com/index/introducing-openai-partner-network/": "2026-06-18T15:30:35.388Z",
+      "https://openai.com/index/deployment-simulation/": "2026-06-18T15:03:06.226Z",
+      "https://openai.com/index/introducing-life-sci-bench/": "2026-06-18T14:22:53.211Z"
     }
   }
 }
