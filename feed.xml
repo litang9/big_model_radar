@@ -6,7 +6,42 @@
     <description>AI 开源生态每日简报 · Daily AI ecosystem digest</description>
     <language>zh-CN</language>
     <atom:link href="https://litang9.github.io/big_model_radar/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Tue, 30 Jun 2026 04:42:43 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jul 2026 05:03:47 +0000</lastBuildDate>
+    <item>
+      <title>AI CLI 工具社区动态日报 2026-07-01</title>
+      <link>https://litang9.github.io/big_model_radar/#2026-07-01/ai-cli</link>
+      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-07-01/ai-cli</guid>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <description>AI CLI 工具社区动态日报 2026-07-01</description>
+    </item>
+    <item>
+      <title>AI Agents 生态日报 2026-07-01</title>
+      <link>https://litang9.github.io/big_model_radar/#2026-07-01/ai-agents</link>
+      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-07-01/ai-agents</guid>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <description>AI Agents 生态日报 2026-07-01</description>
+    </item>
+    <item>
+      <title>AI 官方内容追踪报告 2026-07-01</title>
+      <link>https://litang9.github.io/big_model_radar/#2026-07-01/ai-web</link>
+      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-07-01/ai-web</guid>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <description>AI 官方内容追踪报告 2026-07-01</description>
+    </item>
+    <item>
+      <title>AI 开源趋势日报 2026-07-01</title>
+      <link>https://litang9.github.io/big_model_radar/#2026-07-01/ai-trending</link>
+      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-07-01/ai-trending</guid>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <description>AI 开源趋势日报 2026-07-01</description>
+    </item>
+    <item>
+      <title>Hacker News AI 社区动态日报 2026-07-01</title>
+      <link>https://litang9.github.io/big_model_radar/#2026-07-01/ai-hn</link>
+      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-07-01/ai-hn</guid>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <description>Hacker News AI 社区动态日报 2026-07-01</description>
+    </item>
     <item>
       <title>AI CLI 工具社区动态日报 2026-06-30</title>
       <link>https://litang9.github.io/big_model_radar/#2026-06-30/ai-cli</link>
@@ -181,41 +216,6 @@
       <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-06-25/ai-hn</guid>
       <pubDate>Thu, 25 Jun 2026 00:00:00 +0000</pubDate>
       <description>Hacker News AI 社区动态日报 2026-06-25</description>
-    </item>
-    <item>
-      <title>AI CLI 工具社区动态日报 2026-06-24</title>
-      <link>https://litang9.github.io/big_model_radar/#2026-06-24/ai-cli</link>
-      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-06-24/ai-cli</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <description>AI CLI 工具社区动态日报 2026-06-24</description>
-    </item>
-    <item>
-      <title>AI Agents 生态日报 2026-06-24</title>
-      <link>https://litang9.github.io/big_model_radar/#2026-06-24/ai-agents</link>
-      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-06-24/ai-agents</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <description>AI Agents 生态日报 2026-06-24</description>
-    </item>
-    <item>
-      <title>AI 官方内容追踪报告 2026-06-24</title>
-      <link>https://litang9.github.io/big_model_radar/#2026-06-24/ai-web</link>
-      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-06-24/ai-web</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <description>AI 官方内容追踪报告 2026-06-24</description>
-    </item>
-    <item>
-      <title>AI 开源趋势日报 2026-06-24</title>
-      <link>https://litang9.github.io/big_model_radar/#2026-06-24/ai-trending</link>
-      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-06-24/ai-trending</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <description>AI 开源趋势日报 2026-06-24</description>
-    </item>
-    <item>
-      <title>Hacker News AI 社区动态日报 2026-06-24</title>
-      <link>https://litang9.github.io/big_model_radar/#2026-06-24/ai-hn</link>
-      <guid isPermaLink="true">https://litang9.github.io/big_model_radar/#2026-06-24/ai-hn</guid>
-      <pubDate>Wed, 24 Jun 2026 00:00:00 +0000</pubDate>
-      <description>Hacker News AI 社区动态日报 2026-06-24</description>
     </item>
   </channel>
 </rss>
