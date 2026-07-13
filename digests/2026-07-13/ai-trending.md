@@ -1,103 +1,87 @@
 # AI 开源趋势日报 2026-07-13
 
-> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-13 04:03 UTC
+> 数据来源: GitHub Trending + GitHub Search API | 生成时间: 2026-07-13 15:32 UTC
 
 ---
 
-# AI 开源趋势日报 (2026-07-13)
+这里是为您生成的《AI 开源趋势日报》（2026-07-13）：
+
+---
+
+# 📰 AI 开源趋势日报 (2026-07-13)
 
 ## 1. 今日速览
-今日 GitHub AI 领域呈现出**“端侧 Agent 掌控力”与“安全护栏”并重**的核心趋势。终端编码智能体（如 Claude Code 相关生态）继续爆发，不仅周边辅助工具（MCP服务、安全守卫、上下文记忆）霸榜 Trending，其涉及的“防 AI 执行破坏性命令”等安全痛点也首次获得极大关注。此外，**垂直场景的 AI 交易/量化智能体**（如 Vibe-Trading、ai-hedge-fund）迎来了社区极高的热度，展示出 LLM 在金融决策应用上的成熟。最后，RAG 与记忆层基础设施持续演进，基于知识图谱和无向量数据库的检索方案正在挑战传统架构。
+今日 GitHub AI 生态呈现出**“智能体基建化”**与**“编码助手技能化”**两大鲜明特征。AI Coding Agent（如 Claude Code、Codex）的周边生态迎来了爆发，针对这些工具的定制化 Skills、安全护栏以及上下文记忆管理项目霸榜今日 Trending。此外，RAG 架构正经历显著演进，从传统的基于向量的检索，加速向融合知识图谱与推理的无向量架构过渡。同时，面向个人的自动化智能体（如求职、金融交易、系统运维）正快速落地，展现出巨大的商业化潜力。
 
 ---
 
 ## 2. 各维度热门项目
 
-### 🔧 AI 基础工具（框架、SDK、推理引擎、开发工具、CLI）
-- [Dicklesworthstone/destructive_command_guard](https://github.com/Dicklesworthstone/destructive_command_guard) [Rust] ⭐ (+444 today)
-  **一句话说明：** 一个用于拦截 AI Agent 执行危险 Git 和 Shell 命令的 Rust 工具；随着 Agent 自动化执行代码的能力增强，此类“AI安全护栏”工具成为刚需。
-- [wonderwhy-er/DesktopCommanderMCP](https://github.com/wonderwhy-er/DesktopCommanderMCP) [TypeScript] ⭐ (+210 today)
-  **一句话说明：** 为 Claude 提供终端控制、文件搜索和差异编辑能力的 MCP Server；是目前打通大模型与本地操作系统壁垒的最热门工具。
-- [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) [Python] ⭐ (+274 today)
-  **一句话说明：** 用于配置和监控 Claude Code 的 CLI 模板工具；极大地降低了开发者使用和调优 AI 编码助手的门槛。
-- [Nutlope/hallmark](https://github.com/Nutlope/hallmark) [CSS] ⭐ (+155 today)
-  **一句话说明：** 专为 Cursor、Claude Code 等设计的“反 AI 塑料感”设计技能包；反映了社区对 AI 生成代码的前端审美有了更高要求。
-- [ollama/ollama](https://github.com/ollama/ollama) [Go] ⭐176,007
-  **一句话说明：** 最主流的本地大模型推理引擎；已超前支持 Kimi-K2.6、GLM-5.1 等最新一代模型，是本地化 AI 应用的绝对基石。
-- [vllm-project/vllm](https://github.com/vllm-project/vllm) [Python] ⭐86,089
-  **一句话说明：** 高吞吐量、低显存消耗的 LLM 推理和服务引擎；依然是企业级部署大模型的首选高性能方案。
+### 🔧 AI 基础工具（框架、SDK、推理引擎、开发工具）
+- **[Dicklesworthstone/destructive_command_guard](https://github.com/Dicklesworthstone/destructive_command_guard)** [Rust] ⭐0 (+1290 today)
+  一款安全防护工具，用于拦截 AI 智能体执行危险的 git 和 shell 命令。随着 Agent 自主执行代码能力增强，此类“安全护栏”工具成为刚需。
+- **[Nutlope/hallmark](https://github.com/Nutlope/hallmark)** [CSS] ⭐0 (+802 today)
+  面向 Claude Code、Cursor 和 Codex 的设计技能，专注于消除 AI 生成代码中常见的“AI 味”，提升前端 UI 代码的工程审美。
+- **[vllm-project/vllm](https://github.com/vllm-project/vllm)** [Python] ⭐86,146 
+  行业领先的高吞吐量、高内存效率的 LLM 推理和服务引擎，是目前大模型部署的绝对基座。
+- **[0xPlaygrounds/rig](https://github.com/0xPlaygrounds/rig)** [Rust] ⭐7,912 
+  使用 Rust 构建模块化、可扩展的 LLM 应用程序框架，满足对性能和内存安全有极高要求的开发场景。
 
-### 🤖 AI 智能体/工作流（Agent 框架、自动化、多智能体）
-- [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) [Python] ⭐213,819
-  **一句话说明：** “与你共同成长的 Agent”，主打本地化、可持续进化的超级智能体框架；总量 stars 极高，是目前对抗闭源 Agent 的重要开源力量。
-- [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) [JavaScript] ⭐86,993
-  **一句话说明：** 跨会话的 Agent 持久化上下文记忆工具；能自动压缩会话日志并注入未来对话，解决了 Agent 长期记忆的痛点。
-- [OpenHands/OpenHands](https://github.com/OpenHands/OpenHands) [Python] ⭐80,592
-  **一句话说明：** 开源的 AI 驱动软件开发平台（前 OpenDevin）；致力于成为全能型的自主程序员，在复杂任务编排上的成熟度领先。
-- [browser-use/browser-use](https://github.com/browser-use/browser-use) [Python] ⭐104,440
-  **一句话说明：** 让 AI 能够直接操作浏览器的自动化 Agent 框架；在网页抓取、自动化测试和 RPA 场景中占据统治地位。
-- [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) [Python] ⭐83,424
-  **一句话说明：** 将任意代码、文档、视频转化为可查询知识图谱的 Agent 技能包；代表了从“读文件”向“构建代码逻辑图谱”的 Agent 演进。
+### 🤖 AI 智能体/工作流
+- **[affaan-m/ECC](https://github.com/affaan-m/ECC)** [JavaScript] ⭐229,158 
+  一个 Agent 性能优化系统，提供技能、本能、记忆和安全机制，专为 Claude Code、Codex 等 CLI 工具设计。
+- **[NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)** [Python] ⭐214,121 
+  号称“与你共同成长的 Agent”，由知名开源 AI 组织 NousResearch 发布的通用智能体项目。
+- **[thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)** [JavaScript] ⭐87,065 
+  为各种 AI CLI 工具提供跨会话的持久化上下文记忆，通过压缩历史操作并将其注入新会话来提升 Agent 表现。
+- **[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading)** [Python] ⭐0 (+1148 today)
+  由香港大学数据智能实验室推出的个人交易智能体，展示了 LLM 在量化金融与实时交易场景的应用潜力。
 
 ### 📦 AI 应用（具体应用产品、垂直场景解决方案）
-- [HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) [Python] ⭐ (+768 today)
-  **一句话说明：** 个人自动化交易 AI Agent；今日 star 数暴涨，标志着 LLM 驱动的金融量化系统正从概念走向个人投资者的实际应用。
-- [virattt/ai-hedge-fund](https://github.com/virattt/ai-hedge-fund) [Python] ⭐ (+115 today)
-  **一句话说明：** 基于 AI 多智能体团队协作的对冲基金模拟系统；提供从市场分析到风险评估的完整工作流范式。
-- [anthropics/claude-cookbooks](https://github.com/anthropics/claude-cookbooks) [Jupyter Notebook] ⭐ (+459 today)
-  **一句话说明：** Anthropic 官方发布的 Claude 实战指南与代码配方；官方背书使其成为开发者学习最新模型 API 和高级提示词技巧的教科书。
-- [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps) [Python] ⭐118,751 (+408 today)
-  **一句话说明：** 收录了 100 多个可直接克隆修改的 RAG 和 Agent 应用集合；极高的 star 量说明“开箱即用”的 AI 模版大受独立开发者欢迎。
-- [home-assistant/core](https://github.com/home-assistant/core) [Python] ⭐ (+400 today)
-  **一句话说明：** 全球最大的开源智能家居平台；近期热度极高，反映出本地 LLM 与家庭物联网控制结合的巨大潜力。
+- **[santifer/career-ops](https://github.com/santifer/career-ops)** [JavaScript] ⭐59,831 
+  开源的 AI 求职智能体，能扫描招聘网站、评估职位匹配度并自动定制简历，本地运行于 AI 编码 CLI 中。
+- **[moeru-ai/airi](https://github.com/moeru-ai/airi)** [TypeScript] ⭐0 (+57 today)
+  自托管的开源虚拟 AI 伴侣，具备实时语音聊天及游玩 Minecraft、Factorio 等游戏的能力。
+- **[ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis)** [Python] ⭐57,038 
+  LLM 驱动的多市场股票智能分析系统，结合实时新闻与看板，支持零成本定时运行。
+- **[hugohe3/ppt-master](https://github.com/hugohe3/ppt-master)** [Python] ⭐38,740 
+  通过输入任意文档，由 AI 生成包含可编辑图表和音频旁白的真实 PowerPoint 文件，而非简单的图片拼接。
 
 ### 🧠 大模型/训练（模型权重、训练框架、微调工具）
-- [huggingface/transformers](https://github.com/huggingface/transformers) [Python] ⭐162,555
-  **一句话说明：** 机器学习界的绝对基石模型定义框架；持续引领文本、视觉、多模态模型的最前沿标准。
-- [pytorch/pytorch](https://github.com/pytorch/pytorch) [Python] ⭐101,781
-  **一句话说明：** 全球最主流的深度学习训练框架；在 GPU 加速和动态图方面的优势使其在学术界和工业界仍不可替代。
-- [rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch) [Jupyter Notebook] ⭐98,988
-  **一句话说明：** 一步步教你用 PyTorch 手搓类 ChatGPT 模型的神级教程；随着模型门槛降低，硬核底层原理学习的需求正在反哺爆发。
-- [asgeirtj/system_prompts_leaks](https://github.com/asgeirtj/system_prompts_leaks) [JavaScript] ⭐56,798
-  **一句话说明：** 汇总了 Claude Fable 5、GPT-5.6、Gemini 3.5 等最新一代模型的系统提示词泄漏内容；是研究大厂 AI 产品逻辑设计的珍贵语料库。
+- **[huggingface/transformers](https://github.com/huggingface/transformers)** [Python] ⭐162,571 
+  机器学习领域最核心的模型定义和训练框架，全面覆盖文本、视觉、音频和多模态模型。
+- **[rasbt/LLMs-from-scratch](https://github.com/rasbt/LLMs-from-scratch)** [Jupyter Notebook] ⭐99,017 
+  手把手教开发者使用 PyTorch 从零开始逐步实现 ChatGPT 级别 LLM 的权威开源教程。
+- **[galilai-group/stable-pretraining](https://github.com/galilai-group/stable-pretraining)** [Python] ⭐285 
+  提供可靠、极简且可扩展的库，专为预训练基础模型和世界模型而设计。
+- **[asgeirtj/system_prompts_leaks](https://github.com/asgeirtj/system_prompts_leaks)** [JavaScript] ⭐57,107 
+  收集并持续更新业界最前沿 AI 产品的系统提示词，是研究大模型对齐与应用层 Prompt 架构的绝佳素材。
 
 ### 🔍 RAG/知识库（向量数据库、检索增强、知识管理）
-- [langgenius/dify](https://github.com/langgenius/dify) [TypeScript] ⭐148,630
-  **一句话说明：** 面向生产级 Agent 工作流开发的领先开源平台；其可视化的 RAG 编排能力使之成为企业级 AI 落地首选。
-- [open-webui/open-webui](https://github.com/open-webui/open-webui) [Python] ⭐145,192
-  **一句话说明：** 最受欢迎的本地友好型 AI 交互界面（无缝对接 Ollama）；兼具 RAG 与 Agent 能力，是私有化部署的标配前端。
-- [mem0ai/mem0](https://github.com/mem0ai/mem0) [TypeScript] ⭐60,685
-  **一句话说明：** AI Agent 的通用记忆层；解决了传统 RAG 难以处理用户偏好和跨会话动态演化的痛点。
-- [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) [Python] ⭐33,974
-  **一句话说明：** 无需向量数据库，基于推理的 RAG 文档索引方案；以极轻量的方式挑战了传统的 Embedding 向量检索流派。
-- [milvus-io/milvus](https://github.com/milvus-io/milvus) [Go] ⭐45,204
-  **一句话说明：** 为大规模向量搜索构建的高性能云原生向量数据库；依然是超大型企业处理海量非结构化数据检索的基础设施。
+- **[Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify)** [Python] ⭐84,091 (+1028 today)
+  今日爆火项目，它将任意代码库、SQL 架构和文档转化为可查询的知识图谱，正在重新定义 AI 编码助手对全局上下文的理解方式。
+- **[VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex)** [Python] ⭐33,995 
+  提出基于推理的“无向量”RAG 架构，通过文档树索引实现高效检索，挑战传统向量数据库的统治地位。
+- **[topoteretes/cognee](https://github.com/topoteretes/cognee)** [Python] ⭐27,740 
+  开源的 AI 记忆平台，使用自托管的知识图谱引擎，赋予 Agent 跨会话的长期持久化记忆能力。
+- **[headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom)** [Python] ⭐58,900 
+  RAG 领域的“瘦身”工具，在数据送达大模型前进行 60-95% 的高效压缩，大幅降低 Token 成本且不损失答案质量。
 
 ---
 
 ## 3. 趋势信号分析
-
-1. **CLI 终端 Agent 迎来生态大爆发：** 
-今日 Trending 榜单大量被围绕终端编码 Agent（尤其是 Claude Code）构建的周边工具占据（如安全守卫 `destructive_command_guard`、MCP 服务 `DesktopCommanderMCP`、配置工具 `claude-code-templates`）。这表明开发者已不满足于“网页端对话”，而是要求 AI 深度接管本地操作系统、文件系统和终端执行。
-2. **AI 安全与护栏机制的觉醒：**
-像 `destructive_command_guard` 今日暴涨 444 star，说明随着 Agent 拥有执行 Shell 命令的能力（如自动部署、批量重构），防止 AI 误删库或执行恶意命令的“安全护栏”正成为下一个刚需风口。
-3. **金融与量化智能体热度飙升：**
-`Vibe-Trading` 和 `ai-hedge-fund` 同时在 Trending 榜表现亮眼。结合 AI 对实时新闻解析、多模态财报阅读的能力提升，LLM 在垂直决策（尤其是交易与投研）领域的应用正迎来实质性落地期。
-4. **RAG 与 Memory 架构的分化演进：**
-搜索榜数据表明，传统的向量数据库（Milvus, Qdrant）面临新的挑战。一方面 `mem0` 这类“记忆层”试图取代死板的 RAG 管道；另一方面 `PageIndex` 倡导无向量化、基于纯推理的检索。RAG 基础设施正在向轻量化和“去 Embedding”方向尝试破局。
+从今日榜单数据中可以提炼出三大强劲趋势：
+1. **AI Coding 正式迈入“Skills & Harness”时代**：开发者关注的焦点已从代码补全模型本身，转移到如何扩展 CLI 工具（如 Claude Code、Cursor）的能力上。如 `hallmark`（设计纠偏）、`marketingskills`（营销技能）、`ECC`（性能优化套件）项目的爆发，说明业界正将 AI Coding Agent 视为新型操作系统，围绕其构建丰富的“应用生态”。
+2. **智能体自主行动带来的“安全与记忆”刚需**：`destructive_command_guard` 今日猛增超千星，反映出随着 AI Agent 越来越多地接管终端命令执行权限，阻断危险操作的安全框架成为基础设施；同时，以 `claude-mem` 和 `cognee` 为代表的项目说明，解决 Agent 的跨会话长期记忆问题依然是当前技术攻关的核心高地。
+3. **架构反叛：从“向量”向“图谱与推理”转移**：以 `graphify`（代码知识图谱）和 `PageIndex`（无向量 RAG）为代表的项目备受瞩目，这暗示着传统单纯依赖向量相似度的检索方式正在暴露瓶颈。结合大模型自身推理能力的增强，基于结构化知识与语义图谱的检索架构正在成为 2026 年 RAG 领域的主流演进方向。
 
 ---
 
-## 4. 社区关注热点 (Developer Radar)
-
-- 🔥 **[Dicklesworthstone/destructive_command_guard](https://github.com/Dicklesworthstone/destructive_command_guard) (重点防御工具)**
-  *推荐理由*：只要你在本地跑自动化 Agent（尤其是赋予其终端权限），这个用 Rust 写的拦截器就是最后的保险丝，防止 AI 自我毁灭式执行。
-- 🔥 **[HKUDS/Vibe-Trading](https://github.com/HKUDS/Vibe-Trading) (金融智能体)**
-  *推荐理由*：来自港大的团队开源（同源 LightRAG），展示了极强的 Agent 架构设计能力，想了解如何将真实世界数据接入 LLM 做决策的开发者必看。
-- 🔥 **[Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) (代码理解增强)**
-  *推荐理由*：将代码库转为知识图谱供 AI 查询，极大提升了 Agent 理解庞大微服务架构的准确度，是开发高级 AI 编码助手的利器。
-- 🔥 **[Nutlope/hallmark](https://github.com/Nutlope/hallmark) (前端代码质检)**
-  *推荐理由*：专治“AI 写出来的前端 UI 太丑/太塑料”，它作为插件集成进 Cursor 等 IDE，能让 AI 生成的代码直接符合现代设计规范，直击开发者痛点。
+## 4. 社区关注热点
+- 💡 **[Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify)**：强烈建议前端/后端工程师关注。它将代码库转化为知识图谱，这可能是解决当前 LLM 无法全局理解大型复杂项目架构的突破性方案。
+- 🛡️ **[Dicklesworthstone/destructive_command_guard](https://github.com/Dicklesworthstone/destructive_command_guard)**：所有正在使用或开发自主编程 Agent 的团队都应关注此类防护盾，防止 Agent 误删数据库或执行恶意命令。
+- 🧠 **[thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)**：AI 记忆持久化的标杆项目。了解它如何通过压缩和注入历史上下文，可以为你自己的 Agent 开发提供极佳的架构参考。
+- 💼 **[santifer/career-ops](https://github.com/santifer/career-ops)**：极具代表性的个人生产力 Agent。它展示了如何利用现有的 AI CLI 基础设施，低成本构建带有本地数据分析能力的垂直领域应用。
 
 ---
 *本日报由 [Big Model Radar](https://github.com/litang9/big_model_radar) 自动生成。*
