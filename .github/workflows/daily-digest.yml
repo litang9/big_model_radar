@@ -2,8 +2,8 @@ name: Daily Big Model Radar
 
 on:
   schedule:
-    # 每天 00:17 UTC = 08:17 CST (UTC+8)
-    - cron: "17 0 * * *"
+    # 每天 21:13 UTC = 05:13 CST (next day) (UTC+8)
+    - cron: "13 21 * * *"
   workflow_dispatch:
 
 permissions:
