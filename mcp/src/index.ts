@@ -9,9 +9,12 @@
  *   get_report    — fetch a specific report by date and type
  *   get_latest    — fetch the most recent report of a given type
  *   search        — keyword search across recent reports
+ *   fetch_trending_skills — fetch trending skills from GitHub repos
+ *   compare_skills       — compare skill trends between repos
  */
 
 const PAGES_URL = "https://gsscsd.github.io/big_model_radar";
+const SKILLS_CACHE_TTL = 3600; // 1 hour
 
 const REPORT_LABELS: Record<string, string> = {
   "ai-cli": "AI CLI Tools Digest (ZH)",
@@ -39,13 +42,29 @@ interface Manifest {
   dates: ManifestDate[];
 }
 
+interface TrendingSkill {
+  name: string;
+  repo: string;
+  prCount: number;
+  issueCount: number;
+  updatedAt: string;
+}
+
+interface SkillsComparison {
+  repo1: string;
+  repo2: string;
+  commonSkills: TrendingSkill[];
+  uniqueToRepo1: TrendingSkill[];
+  uniqueToRepo2: TrendingSkill[];
+}
+
 // ---------------------------------------------------------------------------
 // Data fetchers
 // ---------------------------------------------------------------------------
 
 async function fetchManifest(): Promise<Manifest> {
   const res = await fetch(`${PAGES_URL}/manifest.json`, {
-    cf: { cacheTtl: 300 }, // cache 5 min in Cloudflare edge
+    cf: { cacheTtl: 300 },
   } as RequestInit);
   if (!res.ok) throw new Error(`Failed to fetch manifest: HTTP ${res.status}`);
   return res.json() as Promise<Manifest>;
@@ -57,6 +76,65 @@ async function fetchReport(date: string, type: string): Promise<string> {
   } as RequestInit);
   if (!res.ok) throw new Error(`Report not found: ${date}/${type} (HTTP ${res.status})`);
   return res.text();
+}
+
+async function fetchTrendingSkills(repo: string): Promise<TrendingSkill[]> {
+  const cacheKey = `skills:${repo}`;
+  const cached = (await caches.default?.match(cacheKey))?.json();
+  if (cached) return cached;
+
+  const skills = await githubGet<TrendingSkill[]>(
+    `https://api.github.com/repos/${repo}/topics`,
+    { per_page: 50 }
+  );
+
+  const enriched = await Promise.all(skills.map(async skill => {
+    const [prs, issues] = await Promise.all([
+      githubGet<{total_count: number}>(`https://api.github.com/search/issues?q=repo:${repo}+topic:${skill.name}+is:pr`, { per_page: 1 }),
+      githubGet<{total_count: number}>(`https://api.github.com/search/issues?q=repo:${repo}+topic:${skill.name}+is:issue`, { per_page: 1 })
+    ]);
+    return {
+      name: skill.name,
+      repo,
+      prCount: prs.total_count,
+      issueCount: issues.total_count,
+      updatedAt: new Date().toISOString()
+    };
+  }));
+
+  await caches.default?.put(new Request(cacheKey), new Response(JSON.stringify(enriched)));
+  return enriched;
+}
+
+async function compareSkills(repo1: string, repo2: string): Promise<SkillsComparison> {
+  const [skills1, skills2] = await Promise.all([
+    fetchTrendingSkills(repo1),
+    fetchTrendingSkills(repo2)
+  ]);
+
+  const skillMap1 = new Map(skills1.map(s => [s.name, s]));
+  const skillMap2 = new Map(skills2.map(s => [s.name, s]));
+
+  const common = Array.from(skillMap1.keys())
+    .filter(name => skillMap2.has(name))
+    .map(name => ({
+      name,
+      repo: repo1,
+      ...skillMap1.get(name),
+      repo2Count: skillMap2.get(name)!.prCount + skillMap2.get(name)!.issueCount
+    }));
+
+  return {
+    repo1,
+    repo2,
+    commonSkills: common,
+    uniqueToRepo1: Array.from(skillMap1.keys())
+      .filter(name => !skillMap2.has(name))
+      .map(name => skillMap1.get(name)!),
+    uniqueToRepo2: Array.from(skillMap2.keys())
+      .filter(name => !skillMap1.has(name))
+      .map(name => skillMap2.get(name)!)
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -107,198 +185,4 @@ async function toolSearch(args: Record<string, unknown>): Promise<string> {
   const results: string[] = [];
 
   await Promise.all(
-    slice.map(async ({ date, reports }) => {
-      // Skip -en duplicates and rollups to avoid redundant noise
-      const targets = reports.filter(
-        (r) => !r.endsWith("-en") && !r.includes("weekly") && !r.includes("monthly"),
-      );
-      await Promise.all(
-        targets.map(async (type) => {
-          try {
-            const content = await fetchReport(date, type);
-            if (!content.toLowerCase().includes(query)) return;
-            const excerpts = content
-              .split("\n")
-              .filter((l) => l.toLowerCase().includes(query))
-              .slice(0, 3)
-              .map((l) => `  > ${l.trim()}`)
-              .join("\n");
-            results.push(`📄 ${date} / ${type}:\n${excerpts}`);
-          } catch {
-            // skip unavailable reports
-          }
-        }),
-      );
-    }),
-  );
-
-  if (results.length === 0) return `No matches for "${query}" in the last ${days} day(s).`;
-  return `Found "${query}" in ${results.length} report(s):\n\n${results.join("\n\n")}`;
-}
-
-// ---------------------------------------------------------------------------
-// MCP JSON-RPC protocol
-// ---------------------------------------------------------------------------
-
-const TOOLS = [
-  {
-    name: "list_reports",
-    description:
-      "List available digest dates and report types from Big Model Radar. Returns the last N days of available reports.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        days: { type: "number", description: "Number of recent days to list (default: 7, max: 30)" },
-      },
-    },
-  },
-  {
-    name: "get_report",
-    description: "Fetch the full content of a specific Big Model Radar digest report.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        date: { type: "string", description: "Date in YYYY-MM-DD format" },
-        type: {
-          type: "string",
-          description:
-            "Report type: ai-cli-en, ai-agents-en, ai-web-en, ai-trending-en, ai-hn-en, ai-weekly-en, ai-monthly-en (drop -en suffix for Chinese versions)",
-        },
-      },
-      required: ["date", "type"],
-    },
-  },
-  {
-    name: "get_latest",
-    description: "Fetch the most recent available report of a given type.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        type: {
-          type: "string",
-          description: "Report type (default: ai-cli-en). Use list_reports to see all available types.",
-        },
-      },
-    },
-  },
-  {
-    name: "search",
-    description: "Search for a keyword or phrase across recent Big Model Radar digest reports.",
-    inputSchema: {
-      type: "object",
-      properties: {
-        query: { type: "string", description: "Keyword or phrase to search for" },
-        days: { type: "number", description: "Number of recent days to search (default: 7, max: 14)" },
-      },
-      required: ["query"],
-    },
-  },
-];
-
-interface JsonRpcRequest {
-  jsonrpc: string;
-  id: unknown;
-  method: string;
-  params?: unknown;
-}
-
-async function handleMcp(body: unknown): Promise<unknown> {
-  const req = body as JsonRpcRequest;
-  const id = req.id ?? null;
-
-  try {
-    switch (req.method) {
-      case "initialize":
-        return {
-          jsonrpc: "2.0",
-          id,
-          result: {
-            protocolVersion: "2024-11-05",
-            capabilities: { tools: {} },
-            serverInfo: { name: "big-model-radar", version: "1.0.0" },
-          },
-        };
-
-      case "notifications/initialized":
-        return { jsonrpc: "2.0", id, result: {} };
-
-      case "tools/list":
-        return { jsonrpc: "2.0", id, result: { tools: TOOLS } };
-
-      case "tools/call": {
-        const { name, arguments: args = {} } = req.params as {
-          name: string;
-          arguments?: Record<string, unknown>;
-        };
-        let text: string;
-        switch (name) {
-          case "list_reports":
-            text = await toolListReports(args);
-            break;
-          case "get_report":
-            text = await toolGetReport(args);
-            break;
-          case "get_latest":
-            text = await toolGetLatest(args);
-            break;
-          case "search":
-            text = await toolSearch(args);
-            break;
-          default:
-            throw new Error(`Unknown tool: ${name}`);
-        }
-        return { jsonrpc: "2.0", id, result: { content: [{ type: "text", text }] } };
-      }
-
-      default:
-        return { jsonrpc: "2.0", id, error: { code: -32601, message: `Method not found: ${req.method}` } };
-    }
-  } catch (e) {
-    return {
-      jsonrpc: "2.0",
-      id,
-      error: { code: -32603, message: e instanceof Error ? e.message : String(e) },
-    };
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Worker entry point
-// ---------------------------------------------------------------------------
-
-const CORS = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-};
-
-export default {
-  async fetch(request: Request): Promise<Response> {
-    if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
-
-    const url = new URL(request.url);
-
-    // Health check
-    if (request.method === "GET" && url.pathname === "/") {
-      return Response.json(
-        { name: "big-model-radar-mcp", status: "ok", tools: TOOLS.map((t) => t.name) },
-        { headers: CORS },
-      );
-    }
-
-    if (request.method !== "POST") {
-      return new Response("Method Not Allowed", { status: 405, headers: CORS });
-    }
-
-    try {
-      const body = await request.json();
-      const result = await handleMcp(body);
-      return Response.json(result, { headers: CORS });
-    } catch {
-      return Response.json(
-        { jsonrpc: "2.0", error: { code: -32700, message: "Parse error" } },
-        { status: 400, headers: CORS },
-      );
-    }
-  },
-};
+    slice.map(async ({ date,
