@@ -189,12 +189,7 @@ async function generateSummaries(
         return noActivity;
       }
       console.log(`  [openclaw] Calling LLM for OpenClaw report...`);
-      try {
-        return await callLlm(buildPeerPrompt(cfg, issues, prs, releases, dateStr, 50, 30, lang), 8192);
-      } catch (err) {
-        console.error(`  [openclaw] LLM call failed: ${err}`);
-        return summaryFailed;
-      }
+      return callLlm(buildPeerPrompt(cfg, issues, prs, releases, dateStr, 50, 30, lang), 8192);
     })(),
     (async () => {
       console.log("  [claude-code-skills] Calling LLM for skills report...");

@@ -43,12 +43,23 @@ function releaseSlot(): void {
 const MAX_RETRIES = 3;
 const RETRY_BASE_MS = 5_000; // 5 s, 10 s, 20 s
 
+export class EmptyLlmResponseError extends Error {
+  constructor() {
+    super("LLM returned an empty text response");
+    this.name = "EmptyLlmResponseError";
+  }
+}
+
 function is429(err: unknown): boolean {
   return (err as { status?: number })?.status === 429 || String(err).includes("429");
 }
 
 function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
+}
+
+interface CallLlmOptions {
+  sleep?: (ms: number) => Promise<void>;
 }
 
 function getLlmApiKey(): string {
@@ -72,11 +83,21 @@ export function hasLlmCredentials(): boolean {
 }
 
 function extractTextContent(content: unknown): string {
-  if (typeof content === "string") return content.trim();
+  if (content === null) throw new EmptyLlmResponseError();
+  if (typeof content === "string") {
+    const text = content.trim();
+    if (text) return text;
+    throw new EmptyLlmResponseError();
+  }
   if (Array.isArray(content)) {
+    if (content.length === 0) throw new EmptyLlmResponseError();
+    let hasTextPart = false;
     const text = content
       .map((part) => {
-        if (typeof part === "string") return part;
+        if (typeof part === "string") {
+          hasTextPart = true;
+          return part;
+        }
         if (
           part &&
           typeof part === "object" &&
@@ -85,6 +106,7 @@ function extractTextContent(content: unknown): string {
           "text" in part &&
           typeof part.text === "string"
         ) {
+          hasTextPart = true;
           return part.text;
         }
         return "";
@@ -92,11 +114,16 @@ function extractTextContent(content: unknown): string {
       .join("")
       .trim();
     if (text) return text;
+    if (hasTextPart) throw new EmptyLlmResponseError();
   }
   throw new Error("Unexpected response type from LLM");
 }
 
-export async function callLlm(prompt: string, maxTokens = 4096): Promise<string> {
+export async function callLlm(
+  prompt: string,
+  maxTokens = 4096,
+  options: CallLlmOptions = {},
+): Promise<string> {
   for (let attempt = 0; ; attempt++) {
     await acquireSlot();
     let released = false;
@@ -131,12 +158,13 @@ export async function callLlm(prompt: string, maxTokens = 4096): Promise<string>
       const content = data.choices?.[0]?.message?.content;
       return extractTextContent(content);
     } catch (err) {
-      if (attempt < MAX_RETRIES && is429(err)) {
+      const retryReason = err instanceof EmptyLlmResponseError ? "empty response" : "429";
+      if (attempt < MAX_RETRIES && (is429(err) || err instanceof EmptyLlmResponseError)) {
         releaseSlot();
         released = true;
         const wait = RETRY_BASE_MS * 2 ** attempt;
-        console.error(`[llm] 429 — retry ${attempt + 1}/${MAX_RETRIES} in ${wait / 1000}s...`);
-        await sleep(wait);
+        console.error(`[llm] ${retryReason} — retry ${attempt + 1}/${MAX_RETRIES} in ${wait / 1000}s...`);
+        await (options.sleep ?? sleep)(wait);
         continue;
       }
       throw err;
