@@ -1,6 +1,6 @@
 {
   "anthropic": {
-    "lastChecked": "2026-10-17T22:16:18.163Z",
+    "lastChecked": "2026-10-18T22:24:15.374Z",
     "seenUrls": {
       "https://www.anthropic.com/news/responsible-scaling-policy-v3": "2026-02-25T23:57:06.000Z",
       "https://www.anthropic.com/research/deprecation-updates-opus-3": "2026-09-09T21:14:42.000Z",
@@ -485,11 +485,12 @@
       "https://www.anthropic.com/research/ai-expectations-gap": "2026-10-17T14:22:35.000Z",
       "https://www.anthropic.com/research/employment-at-anthropic": "2026-10-17T14:24:53.000Z",
       "https://www.anthropic.com/research/expectations-for-the-future": "2026-10-17T14:25:22.000Z",
-      "https://www.anthropic.com/research/designing-efficient-quantum-circuits": "2026-10-17T14:17:25.000Z"
+      "https://www.anthropic.com/research/designing-efficient-quantum-circuits": "2026-10-17T14:17:25.000Z",
+      "https://www.anthropic.com/news/public-benefit-fund": "2026-10-18T18:05:05.000Z"
     }
   },
   "openai": {
-    "lastChecked": "2026-10-17T22:16:18.023Z",
+    "lastChecked": "2026-10-18T22:24:16.454Z",
     "seenUrls": {
       "https://openai.com/index/arvind-kc-chief-people-officer/": "2026-10-14T22:59:35.972Z",
       "https://openai.com/index/put-ai-to-work-for-your-product-team/": "2026-10-09T18:14:59.017Z",
@@ -1391,7 +1392,7 @@
       "https://openai.com/business/learn/download-the-chatgpt-work-guide-for-sales-teams/": "2026-10-09T18:20:55.389Z",
       "https://openai.com/business/learn/agent-security-enterprise/": "2026-10-09T18:17:24.600Z",
       "https://openai.com/index/unlocking-new-ways-of-working/": "2026-10-15T15:02:04.496Z",
-      "https://openai.com/index/introducing-the-rosalind-academic-plan/": "2026-10-17T00:03:31.765Z",
+      "https://openai.com/index/introducing-the-rosalind-academic-plan/": "2026-10-18T21:11:12.094Z",
       "https://openai.com/index/teaching-students-to-think-and-learn-through-questions/": "2026-10-15T23:22:50.049Z"
     }
   }
